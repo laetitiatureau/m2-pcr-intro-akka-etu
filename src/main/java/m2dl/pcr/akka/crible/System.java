@@ -17,12 +17,9 @@ public class System {
 
         Thread.sleep(5000);
 
-        final ActorRef actorRef = actorSystem.actorOf(Props.create(NumberActor.class, 2), "actor-2");
-        for (int i = 3; i < N; i++){
-            actorRef.tell(i, null);
-        }
+        final ActorRef actorRef = actorSystem.actorOf(Props.create(SenderActor.class, N), "sender");
 
-        Thread.sleep(5000);
+        Thread.sleep(10000);
         log.debug("Actor System Shutdown Starting...");
 
         actorSystem.terminate();
